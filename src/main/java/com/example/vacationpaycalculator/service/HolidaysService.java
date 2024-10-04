@@ -1,5 +1,7 @@
 package com.example.vacationpaycalculator.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,12 +12,15 @@ import java.util.Map;
 @Service
 public class HolidaysService {
     private Map<Integer, Boolean> holidays;
+    Logger logger = LoggerFactory.getLogger(HolidaysService.class);
+
 
     public HolidaysService() {
         holidays = createHolidaysMap();
     }
 
     public int getHolidayCount() {
+        logger.info("holidays.size() = " + holidays.size());
         return holidays.size();
     }
 
@@ -35,6 +40,9 @@ public class HolidaysService {
 
         Map<Integer, Boolean> result = new HashMap<>();
         for (int i = 1; i <= 365; i++) {
+//            if(i % 6 == 0 || i % 7 == 0){
+//                result.put(i, true);
+//            }
             result.put(i, holidays.contains(i));
         }
         return result;

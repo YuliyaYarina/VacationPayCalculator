@@ -22,7 +22,7 @@ public class CalculateController {
             tags = "Калькулятор отпускных"
     )
     @GetMapping("/calculate")
-    public BigDecimal calculate(@RequestParam Double avgSalaryPerMonth,
+    public double calculate(@RequestParam Double avgSalaryPerMonth,
                                 @RequestParam Integer daysOfLeave,
                                 @RequestParam(required = false) List<Integer> daysInLeave) {
         return leaveService.calculateLeavePay(avgSalaryPerMonth, daysOfLeave, daysInLeave);
